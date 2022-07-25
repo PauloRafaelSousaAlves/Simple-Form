@@ -8,5 +8,9 @@ void main() async {
   Controller ctrl = Controller();
   ctrl;
 
-  runApp(App(controller: ctrl));
+  runApp(
+    App(
+      controller: ctrl,
+    ),
+  );
 }
