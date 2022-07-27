@@ -30,21 +30,34 @@ class _RadioGroupWidgetState extends State<RadioGroupWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Item>(
-        stream: _bloc.stream,
-        builder: (context, snapshot) {
-          final item = snapshot.data;
-          return Column(children: items(context, item));
-        });
+      stream: _bloc.stream,
+      builder: (context, snapshot) {
+        final item = snapshot.data;
+        return Column(
+          children: items(
+            context,
+            item,
+          ),
+        );
+      },
+    );
   }
 
   List<Widget> items(BuildContext context, Item? selectedItem) {
     List<Widget> items = [];
     items.add(
-      Text(
-        widget.title,
-        style: const TextStyle(
-          color: DSColors.black30,
-        ),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.title,
+            style: const TextStyle(
+              color: DSColors.red60,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+        ],
       ),
     );
     for (int i = 0; i < widget.items.length; i++) {
@@ -56,7 +69,8 @@ class _RadioGroupWidgetState extends State<RadioGroupWidget> {
         title: Text(
           widget.items[i].description,
           style: const TextStyle(
-            color: DSColors.black30,
+            fontSize: 15,
+            color: DSColors.black60,
           ),
         ),
         onChanged: (value) {

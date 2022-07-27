@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:simple_form/design_system/app_bar/app_bar_widget.dart';
+import 'package:simple_form/design_system/button/button.dart';
 import 'package:simple_form/design_system/color/ds_colors.dart';
 import 'package:simple_form/design_system/radio_group/item.dart';
 import 'package:simple_form/design_system/radio_group/radio_group_widget.dart';
@@ -20,7 +21,7 @@ class _FormDisplayState extends State<FormDisplay> {
   final bloc = GetIt.I<FormBloc>();
   final formKey = GlobalKey<FormState>();
 
-   @override
+  @override
   void initState() {
     super.initState();
   }
@@ -29,7 +30,7 @@ class _FormDisplayState extends State<FormDisplay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWidget(
-        backgroundColor: DSColors.red,
+        backgroundColor: DSColors.blueGrey60,
         title: 'Formulário Simples',
       ),
       body: SingleChildScrollView(
@@ -50,6 +51,33 @@ class _FormDisplayState extends State<FormDisplay> {
                 ),
                 SizedBoxComponent.verticalSpaceS24,
                 const Text(
+                  'Email :',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: DSColors.red60,
+                  ),
+                ),
+                SizedBoxComponent.verticalSpaceS12,
+                TextFormField(
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(
+                    hintText: 'Digite seu email.',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: DSColors.black30,
+                      ),
+                    ),
+                  ),
+                  onChanged: (value) => bloc.email = value,
+                  validator: (value) {
+                    if (value!.isEmpty) {}
+                    return null;
+                  },
+                ),
+                SizedBoxComponent.verticalSpaceS24,
+                const Text(
                   'Nome :',
                   style: TextStyle(
                     fontSize: 16,
@@ -61,7 +89,7 @@ class _FormDisplayState extends State<FormDisplay> {
                 TextFormField(
                   textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(
-                    hintText: 'Digite seu nome',
+                    hintText: 'Digite seu nome.',
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 2,
@@ -69,7 +97,7 @@ class _FormDisplayState extends State<FormDisplay> {
                       ),
                     ),
                   ),
-                  // onChanged: ,
+                  onChanged: (value) => bloc.name = value,
                   validator: (value) {
                     if (value!.isEmpty) {}
                     return null;
@@ -88,7 +116,7 @@ class _FormDisplayState extends State<FormDisplay> {
                 TextFormField(
                   textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(
-                    hintText: 'Digite seu sobrenome',
+                    hintText: 'Digite seu sobrenome.',
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 2,
@@ -96,7 +124,7 @@ class _FormDisplayState extends State<FormDisplay> {
                       ),
                     ),
                   ),
-                  // onChanged: ,
+                  onChanged: (value) => bloc.lastName = value,
                   validator: (value) {
                     if (value!.isEmpty) {}
                     return null;
@@ -117,7 +145,7 @@ class _FormDisplayState extends State<FormDisplay> {
                       const TextInputType.numberWithOptions(decimal: true),
                   textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(
-                    hintText: 'Digite sua idade',
+                    hintText: 'Digite sua idade.',
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 2,
@@ -125,7 +153,7 @@ class _FormDisplayState extends State<FormDisplay> {
                       ),
                     ),
                   ),
-                  // onChanged: ,
+                  onChanged: (value) => bloc.age = value,
                   validator: (value) {
                     if (value!.isEmpty) {}
                     return null;
@@ -136,7 +164,7 @@ class _FormDisplayState extends State<FormDisplay> {
                   stream: bloc.validatedFieldsStream,
                   builder: (context, snapshot) {
                     final radioGroup = RadioGroupWidget(
-                      title: "Genero Sexual",
+                      title: 'Genero Sexual :',
                       items: bloc.genderItems,
                       onValueChanged: (item) {
                         onGender(item);
@@ -145,6 +173,81 @@ class _FormDisplayState extends State<FormDisplay> {
                     return radioGroup;
                   },
                 ),
+                SizedBoxComponent.verticalSpaceS24,
+                const Text(
+                  'Emprego atual :',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: DSColors.red60,
+                  ),
+                ),
+                SizedBoxComponent.verticalSpaceS12,
+                TextFormField(
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(
+                    hintText: 'Digite seu emprego atual.',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: DSColors.black30,
+                      ),
+                    ),
+                  ),
+                  onChanged: (value) => bloc.job = value,
+                  validator: (value) {
+                    if (value!.isEmpty) {}
+                    return null;
+                  },
+                ),
+                SizedBoxComponent.verticalSpaceS24,
+                RadioGroupWidget(
+                  title: 'Sua Escolaridade :',
+                  items: bloc.schoolingItems,
+                  onValueChanged: (item) => onSchooling(item),
+                ),
+                SizedBoxComponent.verticalSpaceS24,
+                const Text(
+                  'Objetivo de vida :',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: DSColors.red60,
+                  ),
+                ),
+                SizedBoxComponent.verticalSpaceS12,
+                TextFormField(
+                  maxLength: 1000,
+                  maxLines: 7,
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(
+                    hintText: 'Me conte sobre seu objetivo para a vida.',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: DSColors.black30,
+                      ),
+                    ),
+                  ),
+                  onChanged: (value) => bloc.lifeGoal = value,
+                  validator: (value) {
+                    if (value!.isEmpty) {}
+                    return null;
+                  },
+                ),
+                SizedBoxComponent.verticalSpaceS24,
+                AppButton(
+                  color: DSColors.blueGrey60,
+                  enable: true,
+                  enableBorder: true,
+                  height: 40,
+                  text: 'Enviar',
+                  textColor: DSColors.black,
+                  icon: const Icon(Icons.email),
+                  paddingIcon: const EdgeInsets.only(right: 8),
+                  onTap: onVerifyFields,
+                ),
+                SizedBoxComponent.verticalSpaceS28,
               ],
             ),
           ),
@@ -155,5 +258,14 @@ class _FormDisplayState extends State<FormDisplay> {
 
   onGender(Item item) {
     bloc.onGender(item);
+  }
+
+  onSchooling(Item item) {
+    bloc.onSchooling(item);
+  }
+
+  void onVerifyFields() async {
+    if (formKey.currentState?.validate() == true &&
+        await bloc.verifyFields()) {}
   }
 }

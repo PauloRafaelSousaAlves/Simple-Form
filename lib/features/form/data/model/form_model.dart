@@ -3,6 +3,7 @@ import 'package:simple_form/share/base/model/model.dart';
 
 class FormModel extends FormEntity implements Model {
   FormModel(
+    super.email,
     super.name,
     super.lastName,
     super.age,
@@ -14,6 +15,7 @@ class FormModel extends FormEntity implements Model {
 
   factory FormModel.copy(FormEntity formEntity) {
     return FormModel(
+      formEntity.email,
       formEntity.name,
       formEntity.lastName,
       formEntity.age,
@@ -28,6 +30,7 @@ class FormModel extends FormEntity implements Model {
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {};
 
+    map['email'] = email;
     map['name'] = name;
     map['lastName'] = lastName;
     map['age'] = age;
