@@ -6,7 +6,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Controller ctrl = Controller();
-  ctrl;
+   ctrl();
 
   runApp(
     App(

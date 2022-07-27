@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:simple_form/app/controller.dart';
 import 'package:simple_form/app/unknow_view.dart';
-import 'package:simple_form/presenter/form/form_display.dart';
+import 'package:simple_form/presenter/dashboard/ui/dashboard_view.dart';
+import 'package:simple_form/presenter/form/ui/form_display.dart';
 
 Widget initialPage(RouteSettings routeSettings, Controller controller) {
-  Widget initialPage = const FormDisplay();
+  Widget initialPage = const DashBoardView();
 
   return initialPage;
 }
@@ -27,6 +28,8 @@ Widget getPage(RouteSettings routeSettings, Controller controller) {
       return initialPage(routeSettings, controller);
     case FormDisplay.routeName:
       return const FormDisplay();
+    case DashBoardView.routeName:
+      return const DashBoardView();
     default:
       return const AppUnknowView();
   }

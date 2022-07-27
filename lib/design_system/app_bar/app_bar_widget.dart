@@ -4,7 +4,7 @@ import 'package:simple_form/design_system/color/ds_colors.dart';
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final AppBar? appBar;
   final Color? backgroundColor;
-  final Image? image;
+  final Icon? icon;
   final String? title;
   final VoidCallback? onTap;
 
@@ -12,7 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.appBar,
     this.backgroundColor,
-    this.image,
+    this.icon,
     this.title,
     this.onTap,
   });
@@ -28,7 +28,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             child: SizedBox(
               height: 16,
               width: 16,
-              child: image,
+              child: icon,
             ),
           ),
         ),

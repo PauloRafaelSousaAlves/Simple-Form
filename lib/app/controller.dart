@@ -4,12 +4,6 @@ import 'package:simple_form/Denpedency_injection/injector.dart';
 class Controller with ChangeNotifier {
   Controller();
 
-  late bool _isLoggedIn;
-  late bool _isPermissionEnable;
-
-  bool get isLoggedIn => _isLoggedIn;
-  bool get isPermissionEnable => _isPermissionEnable;
-
   void loadDependencyInjection() {
     Injector()();
   }
