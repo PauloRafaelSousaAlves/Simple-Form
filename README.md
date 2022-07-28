@@ -1,6 +1,6 @@
 # simple_form
 
-A new Flutter project.
+Um projeto de formulário simples, contendo o uso de clean architecture, bloc, dependency injection.
 
 ## Getting Started
 
